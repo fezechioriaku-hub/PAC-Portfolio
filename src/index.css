@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,600&family=Outfit:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+/* ─── Design Tokens ────────────────────────────────────────── */
+@theme {
+  /* Colors */
+  --color-portfolio-bg:         #0A0C09;
+  --color-portfolio-surface:    #111410;
+  --color-portfolio-card:       #161A13;
+  --color-portfolio-border:     #1E2419;
+  --color-portfolio-borderGold: #8B6914;
+  --color-portfolio-gold:       #C9963A;
+  --color-portfolio-goldLight:  #E8B85A;
+  --color-portfolio-goldPale:   #F5E4BC;
+  --color-portfolio-sage:       #4A7C3F;
+  --color-portfolio-sageMid:    #6BA05A;
+  --color-portfolio-sageLight:  #A8C99A;
+  --color-portfolio-text:       #F0EDD8;
+  --color-portfolio-textMuted:  #8A8A7A;
+  --color-portfolio-textDim:    #4A4A3A;
+  --color-portfolio-red:        #C0392B;
+
+  /* Fonts */
+  --font-serif: 'Cormorant Garamond', serif;
+  --font-sans:  'Outfit', sans-serif;
+}
+
+/* ─── Keyframes ────────────────────────────────────────────── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes pulse-gold {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.5); box-shadow: 0 0 20px #C9963A; }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes chevron-bounce {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(6px); }
+}
+
+/* ─── Base ─────────────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html  { scroll-behavior: smooth; }
+  body  {
+    background-color: var(--color-portfolio-bg);
+    color:            var(--color-portfolio-text);
+    font-family:      var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background-color: color-mix(in srgb, var(--color-portfolio-gold) 20%, transparent);
+    color: var(--color-portfolio-goldPale);
+  }
+}
+
+/* ─── Component utilities ──────────────────────────────────── */
+@layer utilities {
+  /* Marquee scrolling track */
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 30s linear infinite;
+  }
+
+  /* Service card top-glow reveal on hover */
+  .svc-card:hover .svc-glow { opacity: 1 !important; }
+
+  /* Timeline hover effects */
+  .tl-item:hover .tl-num  { color: #1E2419 !important; }
+  .tl-item:hover .tl-orb  {
+    background: #161A13;
+    border-color: #C9963A !important;
+    box-shadow: 0 0 16px #C9963A33;
+  }
+  .tl-item:hover .tl-icon { color: #C9963A !important; }
+}
